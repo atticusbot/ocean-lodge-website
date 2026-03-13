@@ -842,7 +842,7 @@
     <p class="hero-sub">Three properties, two blocks from the boardwalk. No resort fees, no surprises.</p>
     <div class="hero-actions">
       <a href="tel:+14436645451" class="btn-primary">📞 Call to Book</a>
-      <a href="#" onclick="showPhoneModal(); return false;" class="btn-secondary">Book Online</a>
+      <a href="#" onclick="showBookingModal(); return false;" class="btn-secondary">Book Online</a>
     </div>
     <p class="hero-parking-note">Book direct (call or online) — parking is on us.</p>
   </header>
@@ -903,7 +903,7 @@
           <ul class="policy-list">
             <li class="policy-item">
               <span class="policy-label">Parking</span>
-              <span class="policy-value">$10 per night — FREE if you book direct (<a href="tel:+14436645451">call us</a> or <a href="#" onclick="showPhoneModal(); return false;">book online</a>). One reserved space per room, right on-site. Vehicles only.</span>
+              <span class="policy-value">$10 per night — FREE if you book direct (<a href="tel:+14436645451">call us</a> or <a href="#" onclick="showBookingModal(); return false;">book online</a>). One reserved space per room, right on-site. Vehicles only.</span>
             </li>
             <li class="policy-item">
               <span class="policy-label">Deposit</span>
@@ -1042,8 +1042,8 @@
           <span class="amenity-item">Wheelchair accessible</span>
         </div>
       </div>
-      <a href="tel:+14436645451" class="modal-cta">📞 Call to Book Direct — Save 10% + Free Parking</a>
-      <p class="modal-cta-note">Best rate guaranteed when you book direct. No third-party fees.</p>
+      <a href="https://oceanlodgehotelnorth.ibe.stayntouch.com/" class="modal-cta" target="_blank" rel="noopener">Book North Online — Best Rate Direct</a>
+      <p class="modal-cta-note">Or call us: <a href="tel:+14436645451" style="color:inherit;">(443) 664-5451</a> &nbsp;·&nbsp; Free parking with direct booking</p>
     </div>
   </div>
 
@@ -1097,8 +1097,8 @@
           <span class="amenity-item">650 sq ft</span>
         </div>
       </div>
-      <a href="tel:+14436645451" class="modal-cta">📞 Call to Book Direct — Save 10% + Free Parking</a>
-      <p class="modal-cta-note">Best rate guaranteed when you book direct. No third-party fees.</p>
+      <a href="https://oceanlodgehotelsouth.ibe.stayntouch.com/" class="modal-cta" target="_blank" rel="noopener">Book South Online — Best Rate Direct</a>
+      <p class="modal-cta-note">Or call us: <a href="tel:+14436645451" style="color:inherit;">(443) 664-5451</a> &nbsp;·&nbsp; Free parking with direct booking</p>
     </div>
   </div>
 
@@ -1145,7 +1145,7 @@
       <ul class="policy-list">
         <li class="policy-item">
           <span class="policy-label">Parking</span>
-          <span class="policy-value">$10 per night — FREE if you book direct (<a href="tel:+14436645451">call us</a> or <a href="#" onclick="showPhoneModal(); return false;">book online</a>). One reserved space per room, right on-site. Vehicles only.</span>
+          <span class="policy-value">$10 per night — FREE if you book direct (<a href="tel:+14436645451">call us</a> or <a href="#" onclick="showBookingModal(); return false;">book online</a>). One reserved space per room, right on-site. Vehicles only.</span>
         </li>
         <li class="policy-item">
           <span class="policy-label">Deposit</span>
@@ -1416,6 +1416,17 @@
       btn.disabled = true;
     }
 
+    // ── Booking Modal ────────────────────────────────
+    function showBookingModal() {
+      document.getElementById('booking-modal').classList.add('open');
+    }
+    document.getElementById('booking-modal-close').addEventListener('click', () => {
+      document.getElementById('booking-modal').classList.remove('open');
+    });
+    document.getElementById('booking-modal').addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('open');
+    });
+
     // ── Phone Modal ──────────────────────────────────
     function showPhoneModal() {
       document.getElementById('phone-modal').classList.add('open');
@@ -1439,6 +1450,40 @@
       });
     });
   </script>
+
+  <!-- Booking Modal -->
+  <div id="booking-modal" class="modal-overlay" role="dialog" aria-modal="true" style="z-index:10000;">
+    <div class="modal" style="max-width:460px; padding:36px 28px 32px;">
+      <button id="booking-modal-close" class="modal-close" aria-label="Close">✕</button>
+      <p style="font-family:'Plus Jakarta Sans',sans-serif; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#b5894a; margin-bottom:10px;">Book Direct — Save 10%</p>
+      <h2 style="font-size:22px; color:#1d3557; margin-bottom:6px; font-weight:normal;">Choose your property</h2>
+      <p style="font-size:13px; color:#888; margin-bottom:24px;">Best rate guaranteed. Free parking when you book direct.</p>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <a href="https://oceanlodgehotelnorth.ibe.stayntouch.com/" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:space-between; padding:16px 20px; background:#f7f3ed; border-radius:10px; text-decoration:none; border:1px solid #e8e0d0;">
+          <div>
+            <div style="font-family:'Playfair Display',serif; font-size:16px; color:#1d3557; margin-bottom:2px;">Ocean Lodge North</div>
+            <div style="font-size:12px; color:#888;">Classic beach hotel · kitchenette in every room</div>
+          </div>
+          <span style="color:#b5894a; font-size:18px;">→</span>
+        </a>
+        <a href="https://oceanlodgehotelsouth.ibe.stayntouch.com/" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:space-between; padding:16px 20px; background:#f7f3ed; border-radius:10px; text-decoration:none; border:1px solid #e8e0d0;">
+          <div>
+            <div style="font-family:'Playfair Display',serif; font-size:16px; color:#1d3557; margin-bottom:2px;">Ocean Lodge South</div>
+            <div style="font-size:12px; color:#888;">Original building · select balcony units + apartment</div>
+          </div>
+          <span style="color:#b5894a; font-size:18px;">→</span>
+        </a>
+        <a href="https://live.ipms247.com/booking/book-rooms-mallardapartments" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:space-between; padding:16px 20px; background:#f7f3ed; border-radius:10px; text-decoration:none; border:1px solid #e8e0d0;">
+          <div>
+            <div style="font-family:'Playfair Display',serif; font-size:16px; color:#1d3557; margin-bottom:2px;">Mallard Apartments</div>
+            <div style="font-size:12px; color:#888;">Full apartment suites · full kitchen · pets welcome</div>
+          </div>
+          <span style="color:#b5894a; font-size:18px;">→</span>
+        </a>
+      </div>
+      <p style="text-align:center; font-size:12px; color:#aaa; margin-top:18px;">Not sure? <a href="tel:+14436645451" style="color:#b5894a;">(443) 664-5451</a> — we'll help you pick.</p>
+    </div>
+  </div>
 
   <!-- Phone Modal -->
   <div id="phone-modal" class="modal-overlay" role="dialog" aria-modal="true" style="z-index:10000;">

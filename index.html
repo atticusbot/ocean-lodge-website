@@ -506,7 +506,7 @@
     }
     .photo-reel-track {
       display: -webkit-flex; display: flex; gap: 10px;
-      width: -webkit-max-content; width: max-content;
+      /* width set explicitly by JS to avoid max-content mobile issues */
       -webkit-animation: reel-marquee 20s linear infinite;
       animation: reel-marquee 20s linear infinite;
       will-change: transform;
@@ -1428,6 +1428,11 @@
       // Duplicate slides for seamless loop (CSS animates to -50%)
       const origSlides = Array.from(track.querySelectorAll('.photo-slide'));
       origSlides.forEach(s => track.appendChild(s.cloneNode(true)));
+
+      // Set explicit width so mobile browsers don't collapse the track
+      const SLIDE_W = 220; const GAP = 10;
+      const total = track.querySelectorAll('.photo-slide').length;
+      track.style.width = (total * SLIDE_W + (total - 1) * GAP) + 'px';
     });
 
     // ── Home Accordions (Policies / FAQ) ──────────────

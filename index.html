@@ -496,16 +496,23 @@
 
     /* ── Photo Reel ─────────────────────────────────── */
     .photo-reel { position: relative; margin-bottom: 24px; overflow: hidden; }
+    @-webkit-keyframes reel-marquee {
+      0%   { -webkit-transform: translateX(0); transform: translateX(0); }
+      100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+    }
     @keyframes reel-marquee {
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
     .photo-reel-track {
-      display: flex; gap: 10px;
-      width: max-content;
+      display: -webkit-flex; display: flex; gap: 10px;
+      width: -webkit-max-content; width: max-content;
+      -webkit-animation: reel-marquee 20s linear infinite;
       animation: reel-marquee 20s linear infinite;
+      will-change: transform;
     }
     .photo-reel:hover .photo-reel-track {
+      -webkit-animation-play-state: paused;
       animation-play-state: paused;
     }
     .photo-slide {
@@ -1462,14 +1469,14 @@
         <a href="https://oceanlodgehotelnorth.ibe.stayntouch.com/" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:space-between; padding:16px 20px; background:#f7f3ed; border-radius:10px; text-decoration:none; border:1px solid #e8e0d0;">
           <div>
             <div style="font-family:'Playfair Display',serif; font-size:16px; color:#1d3557; margin-bottom:2px;">Ocean Lodge North</div>
-            <div style="font-size:12px; color:#888;">Classic beach hotel · kitchenette in every room</div>
+            <div style="font-size:12px; color:#888;">Classic beach hotel · 2 blocks from boardwalk</div>
           </div>
           <span style="color:#b5894a; font-size:18px;">→</span>
         </a>
         <a href="https://oceanlodgehotelsouth.ibe.stayntouch.com/" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:space-between; padding:16px 20px; background:#f7f3ed; border-radius:10px; text-decoration:none; border:1px solid #e8e0d0;">
           <div>
             <div style="font-family:'Playfair Display',serif; font-size:16px; color:#1d3557; margin-bottom:2px;">Ocean Lodge South</div>
-            <div style="font-size:12px; color:#888;">Original building · select balcony units + apartment</div>
+            <div style="font-size:12px; color:#888;">Unbeatable prices for downtown location</div>
           </div>
           <span style="color:#b5894a; font-size:18px;">→</span>
         </a>

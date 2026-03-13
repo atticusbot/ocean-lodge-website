@@ -506,12 +506,13 @@
     }
     .photo-reel-track {
       display: -webkit-flex; display: flex; gap: 10px;
-      /* width set explicitly by JS to avoid max-content mobile issues */
+    }
+    .photo-reel-track.animating {
       -webkit-animation: reel-marquee 20s linear infinite;
       animation: reel-marquee 20s linear infinite;
       will-change: transform;
     }
-    .photo-reel:hover .photo-reel-track {
+    .photo-reel:hover .photo-reel-track.animating {
       -webkit-animation-play-state: paused;
       animation-play-state: paused;
     }
@@ -1118,7 +1119,7 @@
       <p class="modal-desc">Built for groups, families, and anyone who plans to actually stay a while. Full apartment suites with real kitchens — stovetop, oven, dishwasher, the works. Separate living areas and enough space that a group can share without losing their minds. Pets welcome. Same short walk to the boardwalk.</p>
       <div class="photo-reel" data-reel="mallard">
         <div class="photo-reel-track">
-          <div class="photo-slide" style="font-size:15px; color: var(--navy); border-color: var(--sand);">📸 Photos coming soon!<br><span style="font-size:12px; color:var(--text-muted); margin-top:6px; display:block;">We're getting the camera out this season.</span></div>
+          <div class="photo-slide" style="flex: 0 0 100%; font-size:15px; color: var(--navy); border-color: var(--sand); justify-content:center; align-items:center; text-align:center;">📸 Photos coming soon!<br><span style="font-size:12px; color:var(--text-muted); margin-top:6px; display:block;">We're getting the camera out this season.</span></div>
         </div>
       </div>
       <div class="modal-amenities">
@@ -1433,6 +1434,7 @@
       const SLIDE_W = 220; const GAP = 10;
       const total = track.querySelectorAll('.photo-slide').length;
       track.style.width = (total * SLIDE_W + (total - 1) * GAP) + 'px';
+      track.classList.add('animating');
     });
 
     // ── Home Accordions (Policies / FAQ) ──────────────
